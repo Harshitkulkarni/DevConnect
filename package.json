@@ -1,0 +1,14 @@
+{
+  "name": "devconnect",
+  "version": "1.0.0",
+  "description": " A dev community to HangOut",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "author": "Harshit Kulkarni",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
