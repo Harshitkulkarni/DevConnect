@@ -1,23 +1,25 @@
-const adminAuth = (req, res, next) => {
-  const enteredPassword = 123;
-  const actualPassword = 123;
+const jwt = require("jsonwebtoken");
+const User = require("../modals/user.js");
 
-  if (enteredPassword === actualPassword) {
+const userAuth = async (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+    //console.log(token);
+    if (!token) {
+      throw new Error("invaild token");
+    }
+    const decodedData = await jwt.verify(token, "hat@4143");
+    const { _id } = decodedData;
+    // console.log(_id);
+    const user = await User.findById({ _id: _id });
+    if (!user) {
+      throw new Error("user do not exist");
+    }
+    req.user = user;
     next();
-  } else {
-    res.status(404).send("incorrect password");
+  } catch (error) {
+    res.status(400).send(error.message);
   }
 };
 
-const userAuth = (req, res, next) => {
-  const enteredPassword = 123;
-  const actualPassword = 123;
-
-  if (enteredPassword === actualPassword) {
-    next();
-  } else {
-    res.status(404).send("incorrect password");
-  }
-};
-
-module.exports = { adminAuth, userAuth };
+module.exports = { userAuth };
