@@ -33,12 +33,13 @@ authRouter.post("/login", async (req, res) => {
     }
     const isPasswordcorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordcorrect) {
-      throw new Error(" invaild cradentials");
+      throw new Error(" Invaild Cradentials");
     }
     const token = await user.getJWT();
     // console.log(token);
     res.cookie("token", token);
-    res.send(user.firstName + " loged in successfully");
+
+    res.send(user);
   } catch (error) {
     res.status(400).send("Error : " + error.message);
   }

@@ -39,6 +39,11 @@ const userSchema = new mongoose.Schema(
       default: "this is the default value for the bio",
     },
     skills: { type: [String], lowercase: true },
+    photoURL: {
+      type: String,
+      default:
+        "https://static.vecteezy.com/system/resources/previews/000/550/731/original/user-icon-vector.jpg",
+    },
   },
   { timestamps: true }
 );

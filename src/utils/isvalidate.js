@@ -24,6 +24,7 @@ const isEditDataValid = (req) => {
     "gender",
     "bio",
     "skills",
+    "photoURL",
   ];
   const isEditAllowed = Object.keys(req.body).every((field) =>
     allowedToEdit.includes(field)

@@ -51,4 +51,5 @@ profileRouter.patch("/profile/changepassword", userAuth, async (req, res) => {
     res.status(400).send("Error " + error.message);
   }
 });
+
 module.exports = { profileRouter };
