@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true, lowercase: true, maxLength: 16 },
-    lastName: { type: String, lowercase: true, maxLength: 16 },
+    firstName: { type: String, required: true, maxLength: 16 },
+    lastName: { type: String, maxLength: 16 },
     email: {
       type: String,
       required: true,
@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
     },
     bio: {
       type: String,
-      maxLength: 100,
+      maxLength: 1000,
       default: "this is the default value for the bio",
     },
     skills: { type: [String], lowercase: true },

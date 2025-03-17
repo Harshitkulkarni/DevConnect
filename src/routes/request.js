@@ -12,7 +12,7 @@ requestRouter.post(
     toUserId = req.params.toUserId;
     //console.log(toUserId);
     status = req.params.status;
-    //console.log(status);
+    console.log(status);
 
     const allowedStatus = ["ignored", "intrested"];
     if (!allowedStatus.includes(status)) {
