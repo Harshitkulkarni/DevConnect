@@ -23,11 +23,12 @@ app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+require("dotenv").config();
 
 connectDB()
   .then(() => {
     console.log("connected to db successful");
-    app.listen(7777, () => {
+    app.listen(process.env.PORT, () => {
       console.log("server is listening to port number 7777");
     });
   })
