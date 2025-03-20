@@ -2,7 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const { connectDB } = require("./config/database.js");
 const cros = require("cors");
-
+const http = require("http");
 const app = express();
 
 app.use(
@@ -19,16 +19,23 @@ const { authRouter } = require("./routes/auth.js");
 const { profileRouter } = require("./routes/profile.js");
 const { requestRouter } = require("./routes/request.js");
 const { userRouter } = require("./routes/user.js");
+const initilizeSocket = require("./routes/socket.js");
+const chatRouter = require("./routes/chat.js");
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+app.use("/", chatRouter);
+
 require("dotenv").config();
+
+const server = http.createServer(app);
+initilizeSocket(server);
 
 connectDB()
   .then(() => {
     console.log("connected to db successful");
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log("server is listening to port number 7777");
     });
   })
