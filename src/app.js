@@ -4,7 +4,7 @@ const { connectDB } = require("./config/database.js");
 const cros = require("cors");
 const http = require("http");
 const app = express();
-
+require("dotenv").config();
 app.use(
   cros({
     origin: "http://localhost:5173",
@@ -26,8 +26,6 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", chatRouter);
-
-require("dotenv").config();
 
 const server = http.createServer(app);
 initilizeSocket(server);

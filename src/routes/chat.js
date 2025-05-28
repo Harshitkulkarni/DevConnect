@@ -8,7 +8,7 @@ chatRouter.get("/chat/:toUserId", userAuth, async (req, res) => {
   const fromUserId = req.user._id;
   const { toUserId } = req.params;
   //console.log(fromUserId);
-  //console.log(toUserId);
+  // console.log("the sender id is      ", toUserId);
   const chat = await Chat.findOne({
     participents: { $all: [fromUserId, toUserId] },
   }).populate({
